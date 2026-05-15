@@ -667,7 +667,6 @@ def main():
     while True:
         clear_screen()
         print_logo()
-        print("\n" + center_text("OsintDorks"))
         print("\n1. Info Searcher")
         print("2. Exit")
 
