@@ -56,7 +56,7 @@ def check_updates():
         print("\nGit not found or not a git repo.")
     input("\nPress Enter...")
 
-def generate_social_dorks(platform, name, city="", birthdate=""):
+def generate_social_dorks(platform, name, city, birthdate):
     dorks = []
     if platform == "vk":
         dorks = [
@@ -103,7 +103,7 @@ def generate_social_dorks(platform, name, city="", birthdate=""):
             dorks.append(d)
     return dorks
 
-def generate_contact_dorks(name, city="", birthdate=""):
+def generate_contact_dorks(name, city, birthdate):
     dorks = []
     base = [f'"{name}" "тел"', f'"{name}" "моб"', f'"{name}" "+7"', f'"{name}" "phone"', f'"{name}" "mobile"', f'"{name}" "email"', f'"{name}" "почта"', f'"{name}" "@"', f'"{name}" "e-mail"', f'"{name}" "gmail.com"', f'"{name}" "mail.ru"', f'"{name}" "yandex.ru"', f'"{name}" "контактный телефон"', f'"{name}" "контактный email"', f'"{name}" "связаться"', f'"{name}" "моя почта"', f'"{name}" "мой телефон"', f'"{name}" "tel:"', f'"{name}" "моб."', f'"{name}" "сотовый"', f'"{name}" "phone number"', f'"{name}" "email address"', f'"{name}" "reach me"', f'"{name}" "call me"', f'"{name}" "контакты"']
     dorks.extend(base)
@@ -118,7 +118,7 @@ def generate_contact_dorks(name, city="", birthdate=""):
             dorks.append(d)
     return dorks
 
-def generate_location_dorks(name, city="", birthdate=""):
+def generate_location_dorks(name, city, birthdate):
     dorks = []
     base = [f'"{name}" "адрес"', f'"{name}" "проживает"', f'"{name}" "живет"', f'"{name}" "улица"', f'"{name}" "дом"', f'"{name}" "квартира"', f'"{name}" "район"', f'"{name}" "место жительства"', f'"{name}" "address"', f'"{name}" "lives in"', f'"{name}" "residence"', f'"{name}" "home address"', f'"{name}" "проживание"', f'"{name}" "прописан"', f'"{name}" "регистрация"', f'"{name}" "жилплощадь"', f'"{name}" "город"', f'"{name}" "населенный пункт"', f'"{name}" "адрес проживания"', f'"{name}" "где живет"', f'"{name}" "местонахождение"', f'"{name}" "location"', f'"{name}" "living at"', f'"{name}" "currently lives"', f'"{name}" "address:"']
     dorks.extend(base)
@@ -133,7 +133,7 @@ def generate_location_dorks(name, city="", birthdate=""):
             dorks.append(d)
     return dorks
 
-def generate_employment_dorks(name, city="", birthdate=""):
+def generate_employment_dorks(name, city, birthdate):
     dorks = []
     base = [f'"{name}" "работа"', f'"{name}" "место работы"', f'"{name}" "должность"', f'"{name}" "компания"', f'"{name}" "трудоустройство"', f'"{name}" "работает в"', f'"{name}" "кем работает"', f'"{name}" "профессия"', f'"{name}" "сфера деятельности"', f'"{name}" "job"', f'"{name}" "position"', f'"{name}" "company"', f'"{name}" "works at"', f'"{name}" "occupation"', f'"{name}" "employment"', f'"{name}" "должность:"', f'"{name}" "место работы:"', f'"{name}" "работает"', f'"{name}" "трудится"', f'"{name}" "штат"', f'"{name}" "сотрудник"', f'"{name}" "специалист"', f'"{name}" "менеджер"', f'"{name}" "директор"', f'"{name}" "рабочее место"']
     dorks.extend(base)
@@ -147,30 +147,6 @@ def generate_employment_dorks(name, city="", birthdate=""):
         for d in [f'"{name}" "{birthdate}" "{city}" "работа"', f'"{name}" "{birthdate}" "{city}" "место работы"', f'"{name}" "{birthdate}" "{city}" "должность"', f'"{name}" "{birthdate}" "{city}" "компания"', f'"{name}" "{birthdate}" "{city}" "трудоустройство"', f'"{name}" "{birthdate}" "{city}" "работает в"', f'"{name}" "{birthdate}" "{city}" "кем работает"', f'"{name}" "{birthdate}" "{city}" "профессия"', f'"{name}" "{birthdate}" "{city}" "сфера деятельности"', f'"{name}" "{birthdate}" "{city}" "job"', f'"{name}" "{birthdate}" "{city}" "position"', f'"{name}" "{birthdate}" "{city}" "company"', f'"{name}" "{birthdate}" "{city}" "works at"', f'"{name}" "{birthdate}" "{city}" "occupation"', f'"{name}" "{birthdate}" "{city}" "employment"', f'"{name}" "{birthdate}" "{city}" "должность:"', f'"{name}" "{birthdate}" "{city}" "место работы:"', f'"{name}" "{birthdate}" "{city}" "работает"', f'"{name}" "{birthdate}" "{city}" "трудится"', f'"{name}" "{birthdate}" "{city}" "штат"', f'"{name}" "{birthdate}" "{city}" "сотрудник"', f'"{name}" "{birthdate}" "{city}" "специалист"', f'"{name}" "{birthdate}" "{city}" "менеджер"', f'"{name}" "{birthdate}" "{city}" "директор"', f'"{name}" "{birthdate}" "{city}" "рабочее место"']:
             dorks.append(d)
     return dorks
-
-def get_name_and_extra(section, sub_section=""):
-    name = input("\nEnter target name: ").strip()
-    if not name:
-        print("Name is required!")
-        input("Press Enter...")
-        return
-    print("\nOptional info (press Enter to skip):")
-    city = input("City: ").strip()
-    birthdate = input("Date of birth (YYYY-MM-DD): ").strip()
-    if section == "social":
-        dorks = generate_social_dorks(sub_section, name, city, birthdate)
-    elif section == "contact":
-        dorks = generate_contact_dorks(name, city, birthdate)
-    elif section == "location":
-        dorks = generate_location_dorks(name, city, birthdate)
-    elif section == "employment":
-        dorks = generate_employment_dorks(name, city, birthdate)
-    else:
-        dorks = []
-    print(f"\nGenerated {len(dorks)} dorks:\n")
-    for dork in dorks:
-        print(dork)
-    input("\nPress Enter...")
 
 def info_searcher():
     while True:
@@ -190,13 +166,49 @@ def info_searcher():
             print("\n1.1 VK\n1.2 Instagram\n1.3 Facebook\n1.4 General")
             sub = input("\nSelect (1-4): ").strip()
             if sub == "1":
-                get_name_and_extra("social", "vk")
+                name = input("\nEnter target name: ").strip()
+                if name:
+                    print("\nOptional info (press Enter to skip):")
+                    city = input("City: ").strip()
+                    birthdate = input("Date of birth (YYYY-MM-DD): ").strip()
+                    dorks = generate_social_dorks("vk", name, city, birthdate)
+                    print(f"\nGenerated {len(dorks)} dorks:\n")
+                    for d in dorks:
+                        print(d)
+                    input("\nPress Enter...")
             elif sub == "2":
-                get_name_and_extra("social", "instagram")
+                name = input("\nEnter target name: ").strip()
+                if name:
+                    print("\nOptional info (press Enter to skip):")
+                    city = input("City: ").strip()
+                    birthdate = input("Date of birth (YYYY-MM-DD): ").strip()
+                    dorks = generate_social_dorks("instagram", name, city, birthdate)
+                    print(f"\nGenerated {len(dorks)} dorks:\n")
+                    for d in dorks:
+                        print(d)
+                    input("\nPress Enter...")
             elif sub == "3":
-                get_name_and_extra("social", "facebook")
+                name = input("\nEnter target name: ").strip()
+                if name:
+                    print("\nOptional info (press Enter to skip):")
+                    city = input("City: ").strip()
+                    birthdate = input("Date of birth (YYYY-MM-DD): ").strip()
+                    dorks = generate_social_dorks("facebook", name, city, birthdate)
+                    print(f"\nGenerated {len(dorks)} dorks:\n")
+                    for d in dorks:
+                        print(d)
+                    input("\nPress Enter...")
             elif sub == "4":
-                get_name_and_extra("social", "general")
+                name = input("\nEnter target name: ").strip()
+                if name:
+                    print("\nOptional info (press Enter to skip):")
+                    city = input("City: ").strip()
+                    birthdate = input("Date of birth (YYYY-MM-DD): ").strip()
+                    dorks = generate_social_dorks("general", name, city, birthdate)
+                    print(f"\nGenerated {len(dorks)} dorks:\n")
+                    for d in dorks:
+                        print(d)
+                    input("\nPress Enter...")
             else:
                 input("Invalid. Press Enter...")
         elif choice == "2":
@@ -206,7 +218,16 @@ def info_searcher():
             print("\n2.1 Phone number\n2.2 Email\n2.3 All")
             sub = input("\nSelect (1-3): ").strip()
             if sub in ["1","2","3"]:
-                get_name_and_extra("contact")
+                name = input("\nEnter target name: ").strip()
+                if name:
+                    print("\nOptional info (press Enter to skip):")
+                    city = input("City: ").strip()
+                    birthdate = input("Date of birth (YYYY-MM-DD): ").strip()
+                    dorks = generate_contact_dorks(name, city, birthdate)
+                    print(f"\nGenerated {len(dorks)} dorks:\n")
+                    for d in dorks:
+                        print(d)
+                    input("\nPress Enter...")
             else:
                 input("Invalid. Press Enter...")
         elif choice == "3":
@@ -216,7 +237,16 @@ def info_searcher():
             print("\n3.1 Address\n3.2 All possible location info")
             sub = input("\nSelect (1-2): ").strip()
             if sub in ["1","2"]:
-                get_name_and_extra("location")
+                name = input("\nEnter target name: ").strip()
+                if name:
+                    print("\nOptional info (press Enter to skip):")
+                    city = input("City: ").strip()
+                    birthdate = input("Date of birth (YYYY-MM-DD): ").strip()
+                    dorks = generate_location_dorks(name, city, birthdate)
+                    print(f"\nGenerated {len(dorks)} dorks:\n")
+                    for d in dorks:
+                        print(d)
+                    input("\nPress Enter...")
             else:
                 input("Invalid. Press Enter...")
         elif choice == "4":
@@ -226,7 +256,16 @@ def info_searcher():
             print("\n4.1 Position\n4.2 Job\n4.3 Workplace\n4.4 All possible")
             sub = input("\nSelect (1-4): ").strip()
             if sub in ["1","2","3","4"]:
-                get_name_and_extra("employment")
+                name = input("\nEnter target name: ").strip()
+                if name:
+                    print("\nOptional info (press Enter to skip):")
+                    city = input("City: ").strip()
+                    birthdate = input("Date of birth (YYYY-MM-DD): ").strip()
+                    dorks = generate_employment_dorks(name, city, birthdate)
+                    print(f"\nGenerated {len(dorks)} dorks:\n")
+                    for d in dorks:
+                        print(d)
+                    input("\nPress Enter...")
             else:
                 input("Invalid. Press Enter...")
         elif choice == "5":
