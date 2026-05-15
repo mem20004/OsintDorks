@@ -1,6 +1,8 @@
 # OsintDorks
 Dork generator for Linux/Mac OS
 
+# RUSSIAN
+
 OsintDorks - генератор поисковых запросов для OSINT-разведки
 
 Автор: Mem2004
@@ -23,11 +25,11 @@ OsintDorks это инструмент командной строки для а
 
 Откройте терминал и выполните следующие команды:
 
-git clone https://github.com/ваш-аккаунт/osintdorks.git
+git clone https://github.com/mem20004/OsintDorks
 
-cd osintdorks
+cd OsintDorks
 
-python3 dork.py
+python3 osintdork.py
 
 Никаких дополнительных библиотек не требуется используется только стандартная
 библиотека Python.
@@ -114,33 +116,6 @@ site:vk.com Иван Петров
 Общее количество возможных уникальных запросов превышает 500 штук.
 
 
-Предупреждение об ответственности
-
-Данный инструмент создан исключительно для образовательных целей и для проведения
-авторизованных тестов на проникновение. Использование Google Dorks для получения
-несанкционированного доступа к личной информации может нарушать законодательство
-вашей страны а также условия использования поисковых систем. Автор не несет
-ответственности за любые противоправные действия совершенные с использованием
-этого инструмента. Используйте программу только на тех данных на которые у вас есть
-явное разрешение.
-
-
-Возможности для расширения
-
-В планах реализовать следующие функции:
-- экспорт сгенерированных запросов в текстовый файл
-- автоматический запуск запросов через браузер
-- интеграция с официальным API Google
-- создание Telegram бота на базе этого генератора
-- добавление поддержки LinkedIn Twitter TikTok и других платформ
-
-
-Контакты
-
-Telegram канал: @DeepSeek_mods
-
-GitHub: https://github.com/ваш-аккаунт/osintdorks
-
 
 Благодарности
 
@@ -148,3 +123,123 @@ GitHub: https://github.com/ваш-аккаунт/osintdorks
 проект поставьте звезду на GitHub это поможет другим людям найти его.
 
 Лицензия MIT
+
+# ENGLISH
+
+OsintDorks - search query generator for OSINT reconnaissance
+
+Author: Mem2004
+License: MIT
+
+
+About the project
+
+OsintDorks is a command line tool for automatic generation of Google Dorks
+specialized queries that help find information about a person in open
+sources. The project is created for educational purposes and lawful open
+source intelligence.
+
+The program allows generating hundreds of unique search queries taking into
+account the target's name city and date of birth. All queries are printed
+directly to the console and ready to be copied into a search engine.
+
+
+Installation
+
+Open a terminal and run the following commands:
+
+git clone https://github.com/mem20004/OsintDorks
+
+cd OsintDorks
+
+python3 osintdork.py
+
+No additional libraries are required only the standard Python library is used.
+
+
+Usage
+
+After launching you will see the main menu:
+
+OsintDorks
+
+1. Info Searcher
+2. Exit
+
+Select option 1 to enter the query generation mode.
+
+Inside Info Searcher there are four categories:
+
+Category 1: Social Networks
+
+  1.1 VK - search for profiles on VKontakte
+  1.2 Instagram - search for profiles on Instagram
+  1.3 Facebook - search for profiles on Facebook
+  1.4 General - general queries across all social networks
+
+Category 2: Contact Info
+
+  2.1 Phone number - search for phone numbers
+  2.2 Email - search for email addresses
+  2.3 All - combined search
+
+Category 3: Location
+
+  3.1 Address - search for addresses
+  3.2 All possible location info - all possible location data
+
+Category 4: Employment
+
+  4.1 Position - search for job title
+  4.2 Job - search for place of work
+  4.3 Workplace - search for company
+  4.4 All possible - all possible employment data
+
+After selecting a category and subcategory the program will prompt for:
+
+Enter target name - target name (required field)
+
+Then optional data which can be skipped by pressing Enter:
+
+City - target's city of residence
+Date of birth - date of birth in YYYY-MM-DD format
+
+After input the program will generate all possible search queries and display
+them on the screen. You can copy any query and paste it into Google.
+
+
+Example
+
+Suppose you are looking for information about a person named Ivan Petrov who
+lives in Moscow and was born on May 15 1990.
+
+You select Social Networks then VK. The program asks for the name enter Ivan
+Petrov. Enter Moscow as the city. Enter 1990-05-15 as the date of birth.
+
+The program generates dozens of queries including these:
+
+"Ivan Petrov" vk OR vkontakte
+site:vk.com Ivan Petrov
+"Ivan Petrov" Moscow vk
+"Ivan Petrov" 1990-05-15 vk
+"Ivan Petrov" Moscow 1990-05-15 site:vk.com
+
+You copy any of these queries paste into Google and get search results.
+
+
+Number of generated queries
+
+For Social Networks with all fields filled about 200 queries are generated
+For Contact Info about 100 queries
+For Location about 100 queries
+For Employment about 100 queries
+
+The total number of possible unique queries exceeds 500.
+
+
+Acknowledgments
+
+Thanks to everyone who tests the tool and suggests improvements. If you like
+the project star it on GitHub it will help other people find it.
+
+License MIT
