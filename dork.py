@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import shutil
+import subprocess
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -33,6 +34,27 @@ def print_logo():
                                               ░                                        
 """
     print(center_text(logo))
+
+def check_for_updates():
+    clear_screen()
+    print_logo()
+    print("\n" + center_text("CHECKING FOR UPDATES"))
+    print("\nRunning git pull to check for updates...\n")
+    try:
+        result = subprocess.run(["git", "pull"], capture_output=True, text=True, cwd=os.path.dirname(os.path.abspath(__file__)))
+        print(result.stdout)
+        if result.stderr:
+            print(result.stderr)
+        if "Already up to date" in result.stdout:
+            print("\n[INFO] You already have the latest version.")
+        elif "Updating" in result.stdout:
+            print("\n[SUCCESS] Update downloaded! Please restart the program.")
+        else:
+            print("\n[INFO] Check completed.")
+    except Exception as e:
+        print(f"[ERROR] Failed to check for updates: {e}")
+        print("\nMake sure git is installed and this is a git repository.")
+    input("\nPress Enter to continue...")
 
 def generate_social_dorks(platform, name, city="", birthdate=""):
     dorks = []
@@ -600,10 +622,17 @@ def info_searcher():
         print("3. Location")
         print("4. Employment")
         print("5. Back to main")
+        print("0. Exit")
+        print("99. Check for updates")
 
-        choice = input("\nSelect option (1-5): ").strip()
+        choice = input("\nSelect option: ").strip()
 
-        if choice == "1":
+        if choice == "0":
+            print("\nExiting...")
+            exit(0)
+        elif choice == "99":
+            check_for_updates()
+        elif choice == "1":
             clear_screen()
             print_logo()
             print("\n" + center_text("Social Networks"))
@@ -611,8 +640,11 @@ def info_searcher():
             print("1.2 Instagram")
             print("1.3 Facebook")
             print("1.4 General")
-            sub = input("\nSelect (1-4): ").strip()
-            if sub == "1":
+            print("0. Back")
+            sub = input("\nSelect option: ").strip()
+            if sub == "0":
+                continue
+            elif sub == "1":
                 get_name_and_extra("social", "vk")
             elif sub == "2":
                 get_name_and_extra("social", "instagram")
@@ -629,8 +661,11 @@ def info_searcher():
             print("\n2.1 Phone number")
             print("2.2 Email")
             print("2.3 All")
-            sub = input("\nSelect (1-3): ").strip()
-            if sub in ["1", "2", "3"]:
+            print("0. Back")
+            sub = input("\nSelect option: ").strip()
+            if sub == "0":
+                continue
+            elif sub in ["1", "2", "3"]:
                 get_name_and_extra("contact")
             else:
                 input("Invalid. Press Enter...")
@@ -640,8 +675,11 @@ def info_searcher():
             print("\n" + center_text("Location"))
             print("\n3.1 Address")
             print("3.2 All possible location info")
-            sub = input("\nSelect (1-2): ").strip()
-            if sub in ["1", "2"]:
+            print("0. Back")
+            sub = input("\nSelect option: ").strip()
+            if sub == "0":
+                continue
+            elif sub in ["1", "2"]:
                 get_name_and_extra("location")
             else:
                 input("Invalid. Press Enter...")
@@ -653,8 +691,11 @@ def info_searcher():
             print("4.2 Job")
             print("4.3 Workplace")
             print("4.4 All possible")
-            sub = input("\nSelect (1-4): ").strip()
-            if sub in ["1", "2", "3", "4"]:
+            print("0. Back")
+            sub = input("\nSelect option: ").strip()
+            if sub == "0":
+                continue
+            elif sub in ["1", "2", "3", "4"]:
                 get_name_and_extra("employment")
             else:
                 input("Invalid. Press Enter...")
@@ -669,14 +710,17 @@ def main():
         print_logo()
         print("\n" + center_text("OsintDorks"))
         print("\n1. Info Searcher")
-        print("2. Exit")
+        print("0. Exit")
+        print("99. Check for updates")
 
-        main_choice = input("\nSelect (1-2): ").strip()
-        if main_choice == "1":
-            info_searcher()
-        elif main_choice == "2":
+        main_choice = input("\nSelect option: ").strip()
+        if main_choice == "0":
             print("\nExiting...")
             break
+        elif main_choice == "99":
+            check_for_updates()
+        elif main_choice == "1":
+            info_searcher()
         else:
             input("Invalid. Press Enter...")
 
